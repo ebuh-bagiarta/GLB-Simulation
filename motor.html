@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link  href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/fadeOut.css">
+	<style>
+        .motor_{
+            position:absolute;
+            left:50px;
+            top: 240px;
+            width:260px;
+            height:180px;
+            margin:0 px;
+            background-repeat: no-repeat;
+            background-image: url(img/images.jpg);
+        }
+        .jarak{
+            left : 10px;
+        }
+        .info-message{
+            position:absolute;
+            top: 430px;
+			left : 30px;
+        }
+		.judul_tabel{
+            position:absolute;
+            top: 470px;
+			left : 30px;
+			font-weight : bold;
+			font-size: 15px;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }			
+        #back{
+            position:absolute;
+            left: 360px;
+            top : 188px;
+        }
+        #go{
+            position:absolute;
+            left:425px;
+            top : 188px;
+        }
+		#hitung{
+            position:absolute;
+            left:630px;
+            top : 525px;
+        }
+        #contain{
+            position:absolute;
+            top : 125px;
+            left : 20px;
+        }
+        h4 {
+            font-family: calibri;
+            color : #000000;
+        }
+		
+		
+		#dataTable_wrapper {
+			position : absolute;
+			top : 500px;
+			left : 30px;
+			
+		}
+		.style1 {
+			color: #FF0000;
+			font-style: italic;
+		}
+		
+		.style2 {
+			font-style: italic;
+			font-weight: bold;
+			color: #000000;
+		}
+		.style3 {
+			font-size: 18px;
+			font-weight: bold;
+			color: #2FA4E7;
+		}	
+    </style>
+    <script type="text/javascript" src="js/jquery-1.8.2.js"></script> 
+	<script type="text/javascript" language="javascript" src="datatables/media/js/jquery.dataTables.js"></script>
+	<link  href="datatables/media/css/demo_page.css" rel="stylesheet">
+	<link  href="datatables/media/css/demo_table.css" rel="stylesheet">
+</head>
+<body>
+	<audio id="motor" preload="auto">
+		<source src="sound/AHHHH_BREATH.MP3"></source>
+	</audio>                         
+	<div id="dialog">
+	<header>Gerak Lurus Beraturan (GLB)</header>
+				<table id="contain" cellpadding="4" cellspacing="2">
+					<tbody>
+						<tr> 
+							<td><h4>jarak</h4></td> 
+							<td><input type="text" value = "" class="jarak" placeholder="kilometer"></input></td>
+						</tr>
+						<tr>
+							<td><h4>kecepatan</h4></td>
+							<td><input type="text" value = "" class="kecepatan" placeholder="kilometer/jam"></input></td>	
+						</tr>       
+					</tbody>
+				</table>
+		<div align="justify">Gerak Lurus Beraturan (GLB) adalah suatu gerak lurus yang mempunyai kecepatan konstan. Maka nilai percepatannya adalah a = 0. Gerakan GLB berbentuk linear dan nilai kecepatannya adalah hasil bagi 
+		jarak dengan waktu yang ditempuh, dengan rumus <img src="img/rumus.png"/> atau dengan kata lain <img src="img/waktu.png"/> . </div>
+	</div>
+	<div id="back">
+		 <a href="#" class="btn btn-primary hapus">
+		 		<div class="back">Back</div>	
+		 </a>
+	</div>
+	<div id="go">	
+		<a href="#" class="btn btn-primary hapus">
+				<div class="go">Go</div>
+		</a>
+	</div>
+	<p>
+		<div class="motor_"></div>
+	</p>
+	<p>
+		<div class="info-message"></div>
+	</p>
+	<p>
+		<div class="judul_tabel">Data Simulasi</div>
+	</p>	
+	<table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable" width="100%">
+			<thead>
+				<tr>
+					<th>Jarak / S (km)</th>
+					<th>Kecepatan / V (km/jam)</th>
+					<th>Waktu / t (jam)</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+			<tfoot></tfoot>
+	</table>
+	<div id="hitung">	
+		<a href="#" class="btn btn-primary hapus">
+				<div class="hitung">Hitung Kecepatan Rata - Rata</div>
+		</a>
+	</div>
+	<div id="dialog2">
+		<header>Kecepatan rata - rata</header>
+		Kecepatan rata rata merupakan total jarak yang ditempuh dibagi dengan total waktu yang ditempuh <img src="img/Kecepatan_rata_rataa.png"/>  .
+		<footer>
+				<div id="result"></div>
+		</footer>
+	</div>
+</body>
+</html>
+<script>
+$(document).ready(function() {
+	var oTable = $('#dataTable').dataTable();
+	$("#go").click(function(){
+		if($(".jarak").val()== '') {
+			$(".info-message").html('<div class="style1">silahkan isi jarak terlebih dahulu</div>');
+		} else if ($(".kecepatan").val()== ''){
+			$(".info-message").html('<div class="style1">silahkan isi kecepatan terlebih dahulu</div>');
+		} else 
+		{	 		
+			var jarak = $(".jarak").val();
+			var jarak2= '+='+jarak+'0';
+			var kecepatan = $(".kecepatan").val();
+			var bantu = 0;
+			if( kecepatan  >  0  ) {
+				if(kecepatan > 0 && kecepatan <= 10){
+					bantu = 3500;
+				} else
+				if(kecepatan > 10 && kecepatan <= 20){
+					bantu = 3100;
+				} else 
+				if(kecepatan > 20 && kecepatan <= 30){
+					bantu = 2700;
+				} else
+				if(kecepatan > 30 && kecepatan <= 40){
+					bantu = 2300;
+				} else
+				if(kecepatan > 40 && kecepatan <= 50){
+					bantu = 1900;
+				} else
+				if(kecepatan > 50 && kecepatan <= 60){
+					bantu = 1500;
+				} else
+				if(kecepatan > 60 && kecepatan <= 70){
+					bantu = 1100;
+				} else 
+				if(kecepatan > 70){
+					bantu = 700;
+				}
+			}
+			var satuan_jarak=$('#satuan_jarak').val();
+			var waktu = parseFloat(jarak) / parseFloat(kecepatan);
+			var audio = $("#motor")[0];
+			audio.play();
+			$(".motor_").animate({"left": jarak2}, bantu);
+			$('.info-message').html('<div class="style2">waktu yang dibutuhkan untuk menempuk jarak '+jarak+' km dengan kecepatan '+kecepatan+' km/jam adalah '+waktu+' jam</div>');
+		
+		
+			$('#dataTable').dataTable().fnAddData( [
+			   jarak,
+			   kecepatan,
+			   waktu ]);
+		
+		}
+	});
+     
+	$("#back").click(function(){
+	  $('.jarak').val('');
+	  $('.kecepatan').val('');
+	  $("#dialog2").fadeOut(500, function() {		
+			$(this).hide();
+			$('#result').html('');
+	  });	
+	  $(".info-message").html('');
+	  $(".motor_").animate(
+	   { "left":"50px"}, "slow");
+	   
+	  $.each($('#dataTable tbody tr'), function(){
+		var index = oTable.fnGetPosition(this);
+		oTable.fnDeleteRow(index);
+	  });
+	});
+	
+	$('.dataTables_filter').hide();
+	$('.dataTables_length').hide();
+
+	$('#dialog2').hide();
+	$("#hitung").live('click', function(){
+		var isi = $('#dataTable tbody tr').find('td').text();
+		if(isi == 'No data available in table') {
+		 $(".info-message").html('<div class="style1">silahkan lakukan simulasi terlebih dahulu</div>');
+		}
+		else {
+			var total_jarak = 0;
+			var total_waktu = 0;
+			 $.each($('#dataTable tbody tr'), function(){
+				var kecepatan = $(this).find('td').eq(1).text();
+				var waktu = $(this).find('td').eq(2).text();
+				var jarak = parseFloat(kecepatan) * parseFloat(waktu);
+				total_waktu+=parseFloat(waktu);
+				total_jarak+=jarak;
+			 });
+			 $("#dialog2").fadeIn(500, function() {		
+				$(this).show();
+				$('#result').html('Total jarak yang ditempuh adalah '+total_jarak+' km <br>Total waktu yang ditempuh adalah '+total_waktu+' jam<br><div class="style3">Kecepatan rata rata yang ditempuh adalah '+total_jarak/total_waktu+' km/jam</div>');
+			});	
+		}	
+	});
+
+}); // end of document ready
+
+</script>
+
+
+
+
+
+
+
+
+
+
+

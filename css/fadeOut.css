@@ -1,0 +1,11 @@
+#dialog { position : absolute; left : 20px; background-color:#fff; width:700px; height : 200px; padding:10px; font:normal 14px "Nimbus Sans L", "Helvetica Neue", "Franklin Gothic Medium", Sans-serif; border:1px solid #aaa; -moz-border-radius:7px; -webkit-border-radius:7px; border-radius:7px; -moz-box-shadow:2px 2px 5px #000; -webkit-box-shadow:2px 2px 5px #000; box-shadow:2px 2px 5px #000; }
+#dialog:after { content:""; height:0; display:block; clear:both; visibility:hidden; }
+#dialog header { display:block; padding-bottom:5px; margin-bottom:10px; font-weight:bold; font-size:16px; border-bottom:1px solid #aaa; }
+#dialog footer { display:block; padding-top:10px; margin-top:10px; border-top:1px solid #aaa; }
+#dialog button { float:right; }
+
+#dialog2 { position : absolute; left : 900px; top : 500px; background-color:#fff; width:600px; height : 200px; padding:10px; font:normal 14px "Nimbus Sans L", "Helvetica Neue", "Franklin Gothic Medium", Sans-serif; border:1px solid #aaa; -moz-border-radius:7px; -webkit-border-radius:7px; border-radius:7px; -moz-box-shadow:2px 2px 5px #000; -webkit-box-shadow:2px 2px 5px #000; box-shadow:2px 2px 5px #000; }
+#dialog2:after { content:""; height:0; display:block; clear:both; visibility:hidden; }
+#dialog2 header { display:block; padding-bottom:5px; margin-bottom:10px; font-weight:bold; font-size:16px; border-bottom:1px solid #aaa; }
+#dialog2 footer { display:block; padding-top:10px; margin-top:10px; border-top:1px solid #aaa; }
+#dialog2 button { float:right; }
